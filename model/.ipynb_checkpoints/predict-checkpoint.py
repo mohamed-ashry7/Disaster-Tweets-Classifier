@@ -67,14 +67,14 @@ def predict_fn(input_data, model):
     
     # TODO: Process input_data so that it is ready to be sent to our model.
     #       You should produce two variables:
-    #         data_X   - A sequence of length 500 which represents the converted review
-    #         data_len - The length of the review
+    #         data_X   - A sequence of length 500 which represents the converted tweet
+    #         data_len - The length of the tweet
     
     data_words =tweet_to_words(input_data)
-    data_X ,data_len = convert_and_pad(model.word_dict,data_words,pad=500)
+    data_X ,data_len = convert_and_pad(model.word_dict,data_words,pad=280)
 
     # Using data_X and data_len we construct an appropriate input tensor. Remember
-    # that our model expects input data of the form 'len, review[500]'.
+    # that our model expects input data of the form 'len, tweet[280]'.
     data_pack = np.hstack((data_len, data_X))
     data_pack = data_pack.reshape(1, -1)
     
